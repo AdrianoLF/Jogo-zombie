@@ -1,0 +1,157 @@
+body{
+    margin: 30px 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main-content{
+    width: 80%;
+    max-width: 50rem;
+    max-height: 90vh;
+    border: 1px solid black;
+    border-bottom: 15px solid rgb(0, 0, 0);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background-image: url(/imgs/background.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.tubo{ 
+    position: absolute;
+    width: 70px;
+    bottom: 0;
+    animation: tubo-animation 1.5s infinite linear;
+    /* infinite = movimentos cíclicos infinitos | linear =  para o tubo ter a mesma aceleração durante toda a animação */
+    z-index: 1;
+}
+.zumbi{
+    position: absolute;
+    width: 130px;
+    bottom: -8px;
+}
+.pulo{
+    /* Separei a "animation" em uma classe diferente para poder utilizar o efeito de click = pulo no JS */
+    animation: pulo 600ms ease-out;
+}
+#game-over{
+    margin: 0 auto;
+    width: 100%;
+    height: 300px;
+    top: 50px;
+    position: absolute;
+    z-index: 100;
+    display: none;
+}
+#game-over>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#game-over-bg{
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    max-width: 500px;
+    width: 50vw;
+}
+.game-over-text, #myBtn{
+    margin-top: 20px;
+    background: linear-gradient(rgb(255, 1, 1, 0.5), rgb(218, 218, 12, 0.5));
+    max-width: 450px;
+    width: 45vw;
+    font-size: 25px;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    border-radius: 20px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+.game-over-text button{
+    display: none;
+}
+@media (max-width: 49.375rem){    
+        #game-over>div{
+            padding-top: 15vh;
+        }
+        .game-over-text{
+            display: none;
+        }
+        .main-content{
+            width: 90%;
+            height: 500px;
+        }
+        .tubo{
+            animation: tubo-animation 1s infinite linear;
+        }
+        .pulo{
+            animation: pulo-celular 600ms ease-out;
+        }
+        #myBtn:before{
+            font-size: clamp(10px, 12px + 1vw, 20px);
+            content: 'Clique para continuar';
+    }
+        #myBtn{
+            min-height: 50px;
+        }
+}
+@media (min-width: 49.375rem) {
+    .game-over-text:before{
+    content: 'Aperte espaço para continuar';} 
+    #myBtn{
+        display: none;
+    }
+}
+
+
+
+@keyframes tubo-animation {
+    /* Eu esse keyframe para dar animação ao tubo que anda na tela, veja que ele vai de ("from") right: -50px, até ("to") right 100%*/
+    from{
+        right: -50px;
+    }
+    to{
+        right: 100%;
+    }
+}
+@keyframes pulo { 
+    /* Usei o keyframe pulo para fazer a animação de pulo do boneco, onde o 0% e 100% é o boneco no chão, 50% é quando o boneco está no ar, os valores intermediários eu usei para dar a sensação de gravidade e suavidade */
+    0%{
+        bottom: -9px;
+    }
+    40%{
+        bottom: 160px;
+    }
+    50%{
+        bottom: 160px;
+    }
+    60%{
+        bottom: 160px;
+    }
+    100%{
+        bottom: -9px;
+    }
+}
+@keyframes pulo-celular { 
+    /* Usei o keyframe pulo para fazer a animação de pulo do boneco, onde o 0% e 100% é o boneco no chão, 50% é quando o boneco está no ar, os valores intermediários eu usei para dar a sensação de gravidade e suavidade */
+    0%{
+        bottom: -9px;
+    }
+    40%{
+        bottom: 250px;
+    }
+    50%{
+        bottom: 250px;
+    }
+    60%{
+        bottom: 250px;
+    }
+    100%{
+        bottom: -9px;
+    }
+}
