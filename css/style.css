@@ -6,6 +6,7 @@ body{
 .main-content{
     width: 80%;
     max-width: 50rem;
+    min-height: 50vh;
     max-height: 90vh;
     border: 1px solid black;
     border-bottom: 15px solid rgb(0, 0, 0);
